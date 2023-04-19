@@ -1,0 +1,31 @@
+name: Install Dependencies and Run Linters
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-linters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🧲
+        uses: actions/checkout@v2
+
+      - name: Install Root Dependencies 🌱
+        run: npm install
+
+      - name: Install Backend Dependencies 👩🏽‍💻
+        run: cd backend && npm install
+
+      - name: Install Frontend Dependencies 👨🏻‍💻
+        run: cd frontend && npm install
+
+      - name: Run Linters 🌀
+        run: npm run lint
