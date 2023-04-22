@@ -4,10 +4,11 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "npm-run-all lint:backend lint:frontend",
+		"test": "npm-run-all test:frontend",
 		"lint:backend": "cd backend && npm run lint:staged",
 		"lint:frontend": "cd frontend && npm run lint:staged",
+		"test:frontend": "cd frontend && npm run test",
 		"prepare": "husky install"
 	},
 	"keywords": [],
