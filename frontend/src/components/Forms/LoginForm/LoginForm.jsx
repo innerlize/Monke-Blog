@@ -1,20 +1,41 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { handleChange, handleLogin } from '../../../api/api.js';
 import styles from './LoginForm.module.scss';
 
 const LoginForm = () => {
+	const [inputs, setInputs] = useState({
+		username: '',
+		password: ''
+	});
+
+	const [error, setError] = useState(null);
+
+	const navigate = useNavigate('/');
+
 	return (
 		<form className={styles.form}>
 			<div className={styles.wrapper}>
-				<input className={styles.mail} type='mail' placeholder='Mail' />
 				<input
-					className={styles.password}
+					name='username'
+					type='text'
+					placeholder='Username'
+					onChange={e => handleChange(e, setInputs)}
+				/>
+				<input
+					name='password'
 					type='password'
 					placeholder='Password'
+					onChange={e => handleChange(e, setInputs)}
 				/>
 			</div>
 
-			<button className={styles.button} type='submit'>
+			{error && <span style={{ color: 'red' }}>{error.response.data}</span>}
+
+			<button
+				className={styles.button}
+				type='submit'
+				onClick={e => handleLogin(e, inputs, setError, navigate, '/')}>
 				Login
 			</button>
 
