@@ -5,9 +5,10 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "npm-run-all lint:backend lint:frontend",
-		"test": "npm-run-all test:frontend",
+		"test": "npm-run-all test:backend test:frontend",
 		"lint:backend": "cd backend && npm run lint:staged",
 		"lint:frontend": "cd frontend && npm run lint:staged",
+		"test:backend": "cd backend && npm run test",
 		"test:frontend": "cd frontend && npm run test",
 		"prepare": "husky install"
 	},
