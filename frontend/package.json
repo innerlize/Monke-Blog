@@ -18,7 +18,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test --watchAll=false",
+		"test": "react-scripts test --watchAll=false --forceExit",
 		"eject": "react-scripts eject",
 		"lint:staged": "lint-staged"
 	},
@@ -55,5 +55,6 @@
 		"lint-staged": "^13.2.1",
 		"prettier": "^2.8.7",
 		"sass": "^1.62.0"
-	}
+	},
+	"proxy": "http://localhost:8800/api/"
 }
