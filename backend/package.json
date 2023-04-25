@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jest --watchAll=false --forceExit",
 		"start": "nodemon .index.js",
 		"lint:staged": "lint-staged"
 	},
@@ -20,14 +20,20 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cookie-parser": "^1.4.6",
+		"cors": "^2.8.5",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
+		"jsonwebtoken": "^9.0.0",
 		"mysql2": "^3.2.3",
 		"nodemon": "^2.0.22"
 	},
 	"devDependencies": {
 		"eslint": "^8.38.0",
+		"jest": "^29.5.0",
 		"lint-staged": "^13.2.1",
-		"prettier": "^2.8.7"
+		"prettier": "^2.8.7",
+		"supertest": "^6.3.3"
 	}
 }
