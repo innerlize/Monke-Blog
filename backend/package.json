@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "jest --watchAll=false --forceExit",
-		"start": "nodemon .index.js",
+		"dev": "nodemon .index.js",
+		"start": "node .index.js",
 		"lint:staged": "lint-staged"
 	},
 	"lint-staged": {
