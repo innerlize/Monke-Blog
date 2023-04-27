@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import styles from './WriteForm.module.scss';
 
 const WriteForm = () => {
 	const [value, setValue] = useState('');
 
 	return (
-		<form className={styles.form}>
-			<div className={styles.leftContent}>
+		<form>
+			<div>
 				<input type='text' name='title' placeholder='Title' />
-				<div className={styles.quill_cont}>
+				<div>
 					<ReactQuill
-						className={styles.quill}
 						theme='snow'
 						value={value}
 						onChange={setValue}
@@ -21,15 +19,15 @@ const WriteForm = () => {
 				</div>
 			</div>
 
-			<div className={styles.rightContent}>
-				<div className={styles.file}>
+			<div>
+				<div>
 					<label htmlFor='file'>Upload Image</label>
 					<input type='file' id='file' />
 				</div>
 
-				<div className={styles.category}>
+				<div>
 					<p>Category</p>
-					<div className={styles.category_cont}>
+					<div>
 						<div>
 							<input type='radio' name='dog' id='dog' />
 							<label htmlFor='dog'>Dog</label>
@@ -53,10 +51,10 @@ const WriteForm = () => {
 					</div>
 				</div>
 
-				<div className={styles.saveState}>
+				<div>
 					<p>Publish</p>
 
-					<div className={styles.buttons_cont}>
+					<div>
 						<button>Save as Draft</button>
 						<button>Update Post</button>
 					</div>

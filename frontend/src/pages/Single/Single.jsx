@@ -2,30 +2,23 @@ import React from 'react';
 import SideMenu from '../../components/SideMenu/SideMenu';
 import { Link } from 'react-router-dom';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
-import styles from './Single.module.scss';
 
 const Single = () => {
 	return (
-		<section className={styles.section}>
-			<article className={styles.content}>
-				<img
-					className={styles.img}
-					src='https://images.pexels.com/photos/927497/pexels-photo-927497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-				/>
+		<section>
+			<article>
+				<img src='https://images.pexels.com/photos/927497/pexels-photo-927497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
 
-				<div className={styles.userWrapper}>
-					<div className={styles.userInfo}>
-						<img
-							className={styles.userImg}
-							src='https://images.pexels.com/photos/2624077/pexels-photo-2624077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-						/>
-						<div className={styles.userPostInfo}>
+				<div>
+					<div>
+						<img src='https://images.pexels.com/photos/2624077/pexels-photo-2624077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
+						<div>
 							<span>Skra</span>
 							<p>Posted 2 days ago</p>
 						</div>
 					</div>
 
-					<div className={styles.editPost}>
+					<div>
 						<div>
 							<Link to='/write?edit=1'>
 								<AiFillEdit />
@@ -39,7 +32,7 @@ const Single = () => {
 					</div>
 				</div>
 
-				<div className={styles.postContent}>
+				<div>
 					<h3>Lorem ipsum dolor sit amet</h3>
 
 					<p>

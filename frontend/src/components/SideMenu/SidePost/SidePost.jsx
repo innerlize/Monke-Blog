@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './SidePost.module.scss';
 
 const SidePost = ({ post }) => {
 	return (
-		<div className={styles.sidePost}>
+		<div>
 			<Link>
 				<img src={post.img} />
 				<h4>{post.title}</h4>
