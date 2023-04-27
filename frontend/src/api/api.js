@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-export function handleNavMenu(menu, setMenu) {
-	setMenu(!menu);
-}
-
 export const handleChange = (e, setValues) => {
 	setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
 };
@@ -13,12 +9,13 @@ export const handleLogin = async (
 	values,
 	setError,
 	navigate,
-	navigateTo
+	navigateTo,
+	login
 ) => {
 	e.preventDefault();
 
 	try {
-		await axios.post('auth/login', values);
+		await login(values);
 		navigate(navigateTo);
 	} catch (err) {
 		console.log(err);
