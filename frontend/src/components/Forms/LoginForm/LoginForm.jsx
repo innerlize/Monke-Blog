@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleChange, handleLogin } from '../../../api/api.js';
-import styles from './LoginForm.module.scss';
+import { AuthContext } from '../../../contexts/authContext.jsx';
 
 const LoginForm = () => {
 	const [inputs, setInputs] = useState({
@@ -9,13 +9,15 @@ const LoginForm = () => {
 		password: ''
 	});
 
+	const { login } = useContext(AuthContext);
+
 	const [error, setError] = useState(null);
 
-	const navigate = useNavigate('/');
+	const navigate = useNavigate();
 
 	return (
-		<form className={styles.form}>
-			<div className={styles.wrapper}>
+		<form>
+			<div>
 				<input
 					name='username'
 					type='text'
@@ -33,17 +35,13 @@ const LoginForm = () => {
 			{error && <span style={{ color: 'red' }}>{error.response.data}</span>}
 
 			<button
-				className={styles.button}
 				type='submit'
-				onClick={e => handleLogin(e, inputs, setError, navigate, '/')}>
+				onClick={e => handleLogin(e, inputs, setError, navigate, '/', login)}>
 				Login
 			</button>
 
 			<p>
-				Don&apos;t have an account?{' '}
-				<Link className={styles.link} to='/register'>
-					Sign up!
-				</Link>
+				Don&apos;t have an account? <Link to='/register'>Sign up!</Link>
 			</p>
 		</form>
 	);
