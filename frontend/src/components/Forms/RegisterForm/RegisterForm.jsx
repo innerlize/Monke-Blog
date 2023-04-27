@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleChange, handleRegister } from '../../../api/api.js';
-import styles from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
 	const [inputs, setInputs] = useState({
@@ -15,9 +14,9 @@ const RegisterForm = () => {
 	const navigate = useNavigate();
 
 	return (
-		<form className={styles.form}>
-			<div className={styles.wrapper}>
-				<div className={styles.fullname_wrapper}>
+		<form>
+			<div>
+				<div>
 					<input
 						name='username'
 						type='text'
@@ -43,7 +42,6 @@ const RegisterForm = () => {
 			{error && <span style={{ color: 'red' }}>There is an error!</span>}
 
 			<button
-				className={styles.button}
 				type='submit'
 				onClick={e => handleRegister(e, inputs, setError, navigate, '/login')}>
 				Register
