@@ -33,10 +33,19 @@ export const handleRegister = async (
 	e.preventDefault();
 
 	try {
-		await axios.post('auth/register', values);
+		await axios.post('/auth/register', values);
 		navigate(navigateTo);
 	} catch (err) {
 		console.log(err);
 		setError(err);
+	}
+};
+
+export const handleDelete = async (id, navigate, navigateTo) => {
+	try {
+		await axios.delete('/posts/' + id);
+		navigate(navigateTo);
+	} catch (err) {
+		console.log(err);
 	}
 };
