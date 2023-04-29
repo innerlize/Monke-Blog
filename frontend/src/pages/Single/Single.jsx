@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import SideMenu from '../../components/SideMenu/SideMenu.jsx';
 import useSingleFetch from '../../hooks/useSingleFetch.js';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import moment from 'moment';
 import { AuthContext } from '../../contexts/authContext.jsx';
 import { handleDelete } from '../../api/api.js';
 
 const Single = () => {
-	const postId = useLocation().pathname.split('/')[2];
+	const { id: postId } = useParams();
 	const navigate = useNavigate();
 
 	const { post } = useSingleFetch('/posts/', postId);
