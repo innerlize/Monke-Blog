@@ -16,15 +16,12 @@ const RegisterForm = () => {
 	return (
 		<form>
 			<div>
-				<div>
-					<input
-						name='username'
-						type='text'
-						placeholder='Username'
-						onChange={e => handleChange(e, setInputs)}
-					/>
-					<input name='userLastName' type='text' placeholder='Lastname' />
-				</div>
+				<input
+					name='username'
+					type='text'
+					placeholder='Username'
+					onChange={e => handleChange(e, setInputs)}
+				/>
 				<input
 					name='email'
 					type='mail'
