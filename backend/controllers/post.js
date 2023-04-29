@@ -18,7 +18,6 @@ exports.getSinglePost = (req, res) => {
 		'SELECT `username`, `title`, `description`, p.img, u.img AS userImage, `category`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ?';
 
 	db.query(sqlQuery, [req.params.id], (err, data) => {
-		console.log(req.params.id);
 		if (err) return res.status(500).json(err);
 
 		return res.status(200).json(data);
