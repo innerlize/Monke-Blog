@@ -50,7 +50,7 @@ const Navbar = () => {
 					)}
 
 					<li>
-						<Link>Post</Link>
+						<Link to='/write'>Post</Link>
 					</li>
 				</ul>
 			</div>
