@@ -1,8 +1,10 @@
 import React from 'react';
-import posts from '../../tests/mocks/posts.js';
 import SidePost from './SidePost/SidePost.jsx';
+import useFetch from '../../hooks/useFetch.js';
 
-const SideMenu = () => {
+const SideMenu = ({ category }) => {
+	const { posts } = useFetch('/posts/?category=', category);
+
 	return (
 		<article>
 			<h3>Other posts you may like</h3>
