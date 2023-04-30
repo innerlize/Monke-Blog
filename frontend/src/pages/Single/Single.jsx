@@ -56,7 +56,7 @@ const Single = () => {
 				</div>
 			</article>
 
-			<SideMenu />
+			<SideMenu category={post.category} />
 		</section>
 	);
 };
