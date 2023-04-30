@@ -49,3 +49,21 @@ export const handleDelete = async (id, navigate, navigateTo) => {
 		console.log(err);
 	}
 };
+
+export const handlePublish = async (e, file) => {
+	e.preventDefault();
+
+	handleUploadImage(file);
+};
+
+export const handleUploadImage = async file => {
+	try {
+		const formData = new FormData();
+		formData.append('file', file);
+
+		const response = await axios.post('/upload', formData);
+		console.log(response);
+	} catch (err) {
+		console.log(err);
+	}
+};
