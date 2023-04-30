@@ -6,7 +6,7 @@ const Post = ({ post }) => {
 		<div>
 			<Link to={`/post/${post.id}`}>
 				<div>
-					<img src={post.img} />
+					<img src={post.img} width={300} />
 				</div>
 
 				<div>
