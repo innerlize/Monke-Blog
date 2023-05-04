@@ -18,7 +18,7 @@ const Single = () => {
 	return (
 		<section>
 			<article>
-				<img src={post?.img} width='300px' />
+				<img src={'../uploads/' + post.img} width='300px' />
 
 				<div>
 					<div>
@@ -36,7 +36,7 @@ const Single = () => {
 					{currentUser?.username === post.username && (
 						<div>
 							<div>
-								<Link to='/write?edit=1'>
+								<Link to={'/write?edit=' + post.id} state={post}>
 									<AiFillEdit />
 								</Link>
 							</div>
@@ -56,7 +56,7 @@ const Single = () => {
 				</div>
 			</article>
 
-			<SideMenu category={post.category} />
+			<SideMenu singlePostData={post} />
 		</section>
 	);
 };
