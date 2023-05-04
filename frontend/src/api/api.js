@@ -5,6 +5,20 @@ export const handleChange = (e, setValues) => {
 	setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
 };
 
+export const truncateText = (str, length, ending) => {
+	if (length == null) {
+		length = 100;
+	}
+	if (ending == null) {
+		ending = '...';
+	}
+	if (str.length > length) {
+		return str.substring(0, length - ending.length) + ending;
+	} else {
+		return str;
+	}
+};
+
 export const handleLogin = async (
 	e,
 	values,
