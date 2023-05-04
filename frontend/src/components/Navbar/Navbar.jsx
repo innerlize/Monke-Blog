@@ -22,11 +22,11 @@ const Navbar = () => {
 					</li>
 
 					<li>
-						<Link to='/?category=wild%20animals'>Wild Animals</Link>
+						<Link to='/?category=wild-animals'>Wild Animals</Link>
 					</li>
 
 					<li>
-						<Link to='/?category=animal%20care'>Animal Care</Link>
+						<Link to='/?category=animal-care'>Animal Care</Link>
 					</li>
 
 					<li>
@@ -34,7 +34,7 @@ const Navbar = () => {
 					</li>
 
 					<li>
-						<Link to='/?category=tips%20and%20advices'>Tips & Advices</Link>
+						<Link to='/?category=tips-n-advices'>Tips & Advices</Link>
 					</li>
 
 					<li>
