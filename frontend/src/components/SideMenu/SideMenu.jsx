@@ -2,8 +2,8 @@ import React from 'react';
 import SidePost from './SidePost/SidePost.jsx';
 import useFetch from '../../hooks/useFetch.js';
 
-const SideMenu = ({ category }) => {
-	const { posts } = useFetch('/posts/?category=', category);
+const SideMenu = ({ singlePostData }) => {
+	const { posts } = useFetch('/posts/?category=', singlePostData.category);
 
 	return (
 		<article>
@@ -11,7 +11,9 @@ const SideMenu = ({ category }) => {
 
 			<div>
 				{posts?.map(post => {
-					return <SidePost key={post.id} post={post} />;
+					if (singlePostData.id !== post.id) {
+						return <SidePost key={post.id} post={post} />;
+					}
 				})}
 			</div>
 		</article>
