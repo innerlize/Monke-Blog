@@ -15,7 +15,7 @@ exports.getPosts = (req, res) => {
 
 exports.getSinglePost = (req, res) => {
 	const sqlQuery =
-		'SELECT `username`, `title`, `description`, p.img, u.img AS userImage, `category`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ?';
+		'SELECT p.id, `username`, `title`, `description`, p.img, u.img AS userImage, `category`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ?';
 
 	db.query(sqlQuery, [req.params.id], (err, data) => {
 		if (err) return res.status(500).json(err);
@@ -25,11 +25,59 @@ exports.getSinglePost = (req, res) => {
 };
 
 exports.addPost = (req, res) => {
-	res.json('From controller ;3');
+	const token = req.cookies.access_token;
+
+	if (!token) return res.status(401).json('Not authenticated');
+
+	jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
+		if (err) return res.status(403).json('Token is not valid!');
+
+		const sqlQuery =
+			'INSERT INTO posts (`title`, `description`, `img`, `date`, `uid`, `category`) VALUES (?)';
+
+		const values = [
+			req.body.title,
+			req.body.description,
+			req.body.img,
+			req.body.date,
+			userInfo.id,
+			req.body.category
+		];
+
+		db.query(sqlQuery, [values], err => {
+			if (err) return res.status(500).json(err);
+
+			return res.json('Post has been created!');
+		});
+	});
 };
 
 exports.updatePost = (req, res) => {
-	res.json('From controller ;3');
+	const token = req.cookies.access_token;
+
+	if (!token) return res.status(401).json('Not authenticated');
+
+	jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
+		if (err) return res.status(403).json('Token is not valid!');
+
+		const postId = req.params.id;
+
+		const sqlQuery =
+			'UPDATE posts SET `title`=?, `description`=?, `img`=?, `category`=? WHERE `id` = ? AND `uid` = ?';
+
+		const values = [
+			req.body.title,
+			req.body.description,
+			req.body.img,
+			req.body.category
+		];
+
+		db.query(sqlQuery, [...values, postId, userInfo.id], err => {
+			if (err) return res.status(500).json(err);
+
+			return res.json('Post has been updated!');
+		});
+	});
 };
 
 exports.deletePost = (req, res) => {
