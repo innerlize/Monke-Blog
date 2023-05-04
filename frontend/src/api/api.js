@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export const handleChange = (e, setValues) => {
 	setValues(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -50,10 +51,31 @@ export const handleDelete = async (id, navigate, navigateTo) => {
 	}
 };
 
-export const handlePublish = async (e, file) => {
+export const handlePublish = async (e, file, state, values) => {
 	e.preventDefault();
 
-	handleUploadImage(file);
+	const imgUrl = await handleUploadImage(file);
+
+	const { title, description, category } = values;
+
+	try {
+		state
+			? await axios.put('/posts/' + state.id, {
+					title,
+					description,
+					img: file ? imgUrl : '',
+					category
+			  })
+			: await axios.post('/posts', {
+					title,
+					description,
+					img: file ? imgUrl : '',
+					date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+					category
+			  });
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 export const handleUploadImage = async file => {
@@ -62,7 +84,7 @@ export const handleUploadImage = async file => {
 		formData.append('file', file);
 
 		const response = await axios.post('/upload', formData);
-		console.log(response);
+		return response.data;
 	} catch (err) {
 		console.log(err);
 	}
