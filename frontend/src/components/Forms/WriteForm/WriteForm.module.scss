@@ -1,0 +1,137 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	overflow: hidden;
+
+	h4 {
+		font-size: 25px;
+		margin-bottom: 5px;
+	}
+
+	input[type='text'] {
+		width: 100%;
+		padding: 12px 15px;
+		font-size: 18px;
+		border: 1px solid var(--lightblue);
+	}
+
+	.left_content {
+		border-bottom: 1px solid var(--lightblue);
+
+		.title_cont {
+			margin-bottom: 30px;
+		}
+
+		.quill_cont {
+			.quill {
+				height: 150px;
+				background-color: #ffffff;
+				overflow: scroll;
+			}
+		}
+	}
+
+	.right_content {
+		.file {
+			p {
+				text-align: center;
+				margin: 10px 0;
+				font-size: 18px;
+			}
+
+			label {
+				width: fit-content;
+				display: block;
+				padding: 10px;
+				margin: 0 auto;
+				font-size: 20px;
+				color: var(--white);
+				font-weight: bold;
+				background-color: var(--blue);
+				cursor: pointer;
+				transition: 0.1s ease-in-out;
+				text-decoration: underline;
+
+				&:hover {
+					background-color: var(--lightblue);
+				}
+			}
+
+			input[type='file'] {
+				display: none;
+			}
+
+			.selected_file {
+				width: fit-content;
+				padding: 0 5px;
+				margin: 15px auto 0;
+				font-weight: bold;
+				color: var(--blue);
+				border-left: 4px solid var(--blue);
+				border-right: 4px solid var(--blue);
+			}
+		}
+
+		.category {
+			margin: 30px 0 60px 0;
+
+			.category_cont {
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				padding: 12px 15px;
+				border: 1px solid var(--lightblue);
+				background-color: #ffffff;
+				gap: 20px;
+
+				div {
+					display: flex;
+					gap: 4px;
+
+					label {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+
+		.publish {
+			button {
+				width: 100%;
+				padding: 15px 0;
+				font-size: 20px;
+				font-weight: bold;
+				color: var(--white);
+				background-color: var(--blue);
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1280px) {
+	.form {
+		flex-direction: row;
+
+		.left_content {
+			flex: 2;
+
+			.quill_cont {
+				height: 100%;
+				font-size: 30px;
+
+				.quill {
+					height: 100%;
+
+					&::-webkit-scrollbar {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.right_content {
+			flex: 1;
+		}
+	}
+}

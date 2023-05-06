@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleChange, handleLogin } from '../../../api/api.js';
 import { AuthContext } from '../../../contexts/authContext.jsx';
+import styles from './LoginForm.module.scss';
 
 const LoginForm = () => {
 	const [inputs, setInputs] = useState({
@@ -16,8 +17,8 @@ const LoginForm = () => {
 	const navigate = useNavigate();
 
 	return (
-		<form>
-			<div>
+		<form className={styles.form}>
+			<div className={styles.wrapper}>
 				<input
 					name='username'
 					type='text'
@@ -32,9 +33,10 @@ const LoginForm = () => {
 				/>
 			</div>
 
-			{error && <span style={{ color: 'red' }}>{error.response.data}</span>}
+			{error && <span className={styles.error}>{error.response.data}</span>}
 
 			<button
+				className={styles.button}
 				type='submit'
 				onClick={e => handleLogin(e, inputs, setError, navigate, '/', login)}>
 				Login

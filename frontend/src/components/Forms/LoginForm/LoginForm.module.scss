@@ -1,0 +1,46 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	padding: 40px 0;
+	gap: 40px;
+	background-color: var(--white);
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		input {
+			padding: 5px 0;
+			font-family: var(--madurai);
+			font-size: 18px;
+			border-bottom: 2px solid var(--black);
+			background-color: transparent;
+		}
+	}
+
+	.error {
+		font-weight: bold;
+		color: red;
+	}
+
+	.button {
+		width: 120px;
+		padding: 12px 0;
+		color: var(--white);
+		font-family: var(--montserrat);
+		font-size: 18px;
+		background-color: var(--blue);
+	}
+
+	p {
+		font-family: var(--madurai);
+
+		a {
+			text-decoration: underline;
+		}
+	}
+}

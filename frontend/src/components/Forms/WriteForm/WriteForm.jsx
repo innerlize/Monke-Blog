@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { handlePublish } from '../../../api/api';
 import { useLocation } from 'react-router-dom';
+import styles from './WriteForm.module.scss';
 
 const WriteForm = () => {
 	const state = useLocation().state;
@@ -19,38 +20,52 @@ const WriteForm = () => {
 	};
 
 	return (
-		<form>
-			<div>
-				<input
-					type='text'
-					name='title'
-					value={title}
-					placeholder='Title'
-					onChange={e => setTitle(e.target.value)}
-				/>
-				<div>
+		<form className={styles.form}>
+			<div className={styles.left_content}>
+				<div className={styles.title_cont}>
+					<h4>Title</h4>
+					<input
+						type='text'
+						name='title'
+						value={title}
+						placeholder='E.g.: Why are dogs awesome?'
+						onChange={e => setTitle(e.target.value)}
+					/>
+				</div>
+
+				<div className={styles.quill_cont}>
+					<h4>Description</h4>
 					<ReactQuill
+						className={styles.quill}
 						theme='snow'
 						value={description}
 						onChange={setDescription}
-						placeholder='Description'
+						placeholder='E.g.: Today we gonna explore the nature of dogs, because dogs are so funny and...'
 					/>
 				</div>
 			</div>
 
-			<div>
-				<div>
+			<div className={styles.right_content}>
+				<div className={styles.file}>
+					<h4>Image</h4>
+					<input
+						type='text'
+						placeholder='E.g.: https://images.pexels.com/photos/1404727/pexels-photo-1404727.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+					/>
+					<p>Or</p>
 					<label htmlFor='file'>Upload Image</label>
 					<input
 						type='file'
 						id='file'
 						onChange={e => setFile(e.target.files[0])}
 					/>
+					{file?.name && <p className={styles.selected_file}>{file.name}</p>}
 				</div>
 
-				<div>
-					<p>Category</p>
-					<div>
+				<div className={styles.category}>
+					<h4>Category</h4>
+
+					<div className={styles.category_cont}>
 						<div>
 							<input
 								type='radio'
@@ -104,15 +119,10 @@ const WriteForm = () => {
 					</div>
 				</div>
 
-				<div>
+				<div className={styles.publish}>
 					<button onClick={e => handlePublish(e, file, state, values)}>
-						Publish
+						{state ? 'Update' : 'Publish'}
 					</button>
-
-					<div>
-						<button>Save as Draft</button>
-						<button>Update Post</button>
-					</div>
 				</div>
 			</div>
 		</form>
