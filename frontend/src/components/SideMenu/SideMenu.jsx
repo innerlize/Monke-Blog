@@ -1,21 +1,30 @@
 import React from 'react';
 import SidePost from './SidePost/SidePost.jsx';
 import useFetch from '../../hooks/useFetch.js';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper';
+import styles from './SideMenu.module.scss';
 
 const SideMenu = ({ singlePostData }) => {
 	const { posts } = useFetch('/posts/?category=', singlePostData.category);
 
 	return (
-		<article>
+		<article className={styles.sideMenu}>
 			<h3>Other posts you may like</h3>
 
-			<div>
-				{posts?.map(post => {
-					if (singlePostData.id !== post.id) {
-						return <SidePost key={post.id} post={post} />;
+			<Swiper navigation={true} modules={[Navigation]} className='mySwiper'>
+				{posts?.map((post, index) => {
+					if (singlePostData.id !== post.id && index <= 4) {
+						return (
+							<SwiperSlide key={post.id}>
+								<SidePost post={post} />
+							</SwiperSlide>
+						);
 					}
 				})}
-			</div>
+			</Swiper>
 		</article>
 	);
 };

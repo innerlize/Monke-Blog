@@ -1,0 +1,15 @@
+.sideMenu {
+	margin-top: 100px;
+
+	h3 {
+		font-size: 22px;
+		margin-bottom: 20px;
+	}
+}
+
+@media only screen and (min-width: 1280px) {
+	.sideMenu {
+		width: 30%;
+		margin-top: 0;
+	}
+}

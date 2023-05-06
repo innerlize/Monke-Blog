@@ -47,3 +47,17 @@
 	-ms-touch-action: manipulation;
 	touch-action: manipulation;
 }
+
+@media only screen and (min-width: 1280px) {
+	.mySwiper {
+		.swiper-wrapper {
+			flex-direction: column;
+			gap: 2vw;
+		}
+
+		.swiper-button-prev::after,
+		.swiper-button-next::after {
+			display: none;
+		}
+	}
+}
