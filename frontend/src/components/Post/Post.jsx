@@ -2,19 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { truncateText } from '../../api/api.js';
 import moment from 'moment';
+import styles from './Post.module.scss';
 
 const Post = ({ post }) => {
 	return (
-		<div>
-			<Link to={`/post/${post.id}`}>
-				<div>
-					<img src={'../uploads/' + post.img} width={300} />
+		<div className={styles.post}>
+			<Link className={styles.wrapper} to={`/post/${post.id}`}>
+				<div className={styles.img}>
+					<img src={'../uploads/' + post.img} />
 				</div>
 
-				<div>
+				<div className={styles.content}>
 					<h3>{post.title}</h3>
-					<p>{truncateText(post.description, 50)}</p>
-					<p>{moment(post.date).fromNow()}</p>
+					<p>
+						{truncateText(post.description, screen.width < 1280 ? 50 : 250)}
+					</p>
+					<p>Posted {moment(post.date).fromNow()}</p>
+					<p className={styles.read_more}>Read more</p>
 				</div>
 			</Link>
 		</div>
