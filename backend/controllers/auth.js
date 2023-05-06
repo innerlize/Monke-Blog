@@ -8,6 +8,13 @@ exports.register = (req, res) => {
 	db.query(sqlQuery, [req.body.username, req.body.email], (err, data) => {
 		if (err) return res.json(err);
 
+		if (!req.body.username)
+			return res.status(409).json('You need to add an username!');
+		if (!req.body.email)
+			return res.status(409).json('You need to add an email!');
+		if (!req.body.password)
+			return res.status(409).json('You need to add a password!');
+
 		if (data.length) return res.status(409).json('User already exists!');
 
 		// Hash the password and create an user.
@@ -34,7 +41,12 @@ exports.login = (req, res) => {
 	db.query(sqlQuery, [req.body.username], (err, data) => {
 		if (err) return res.json(err);
 
-		if (data.length === 0) return res.status(404).json('User not found!');
+		if (!req.body.username)
+			return res.status(409).json('You need to add an username!');
+		if (!req.body.password)
+			return res.status(409).json('You need to add a password!');
+
+		if (!data.length) return res.status(404).json('User not found!');
 
 		const userData = data[0];
 		const { password, ...other } = userData;
