@@ -6,6 +6,7 @@ import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import moment from 'moment';
 import { AuthContext } from '../../contexts/authContext.jsx';
 import { handleDelete } from '../../api/api.js';
+import styles from './Single.module.scss';
 
 const Single = () => {
 	const { id: postId } = useParams();
@@ -16,43 +17,49 @@ const Single = () => {
 	const { currentUser } = useContext(AuthContext);
 
 	return (
-		<section>
-			<article>
-				<img src={'../uploads/' + post.img} width='300px' />
+		<section className={styles.section}>
+			<article className={styles.content}>
+				<img className={styles.img} src={'../uploads/' + post.img} />
 
-				<div>
-					<div>
+				<div className={styles.userWrapper}>
+					<div className={styles.userInfo}>
 						{post.userImage ? (
-							<img src={post.userImage} width='50px' />
+							<img className={styles.userImg} src={post.userImage} />
 						) : (
-							<div>no tiene imagen xd</div>
+							<img
+								className={styles.userImg}
+								src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
+							/>
 						)}
-						<div>
+						<div className={styles.userPostInfo}>
 							<span>{post.username}</span>
 							<p>Posted {moment(post.date).fromNow()}</p>
 						</div>
 					</div>
 
 					{currentUser?.username === post.username && (
-						<div>
-							<div>
-								<Link to={'/write?edit=' + post.id} state={post}>
+						<div className={styles.postOptions}>
+							<Link
+								className={styles.edit}
+								to={'/write?edit=' + post.id}
+								state={post}>
+								<div>
 									<AiFillEdit />
-								</Link>
-							</div>
-							<div onClick={() => handleDelete(postId, navigate, '/')}>
-								<Link>
+								</div>
+							</Link>
+							<Link className={styles.delete}>
+								<div onClick={() => handleDelete(postId, navigate, '/')}>
 									<AiFillDelete />
-								</Link>
-							</div>
+								</div>
+							</Link>
 						</div>
 					)}
 				</div>
 
-				<div>
+				<div className={styles.postContent}>
 					<h3>{post.title}</h3>
 
-					{post.description}
+					<div dangerouslySetInnerHTML={{ __html: post.description }}></div>
 				</div>
 			</article>
 
