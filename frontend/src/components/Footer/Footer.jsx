@@ -1,13 +1,21 @@
 import React from 'react';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
 	return (
-		<footer>
-			<img src={require('../../assets/images/logo.png')} />
+		<footer className={styles.footer}>
+			<img
+				className={styles.logo}
+				src={require('../../assets/images/logo.png')}
+			/>
 
 			<p>
 				Created and designed by{' '}
-				<a href='https://tiltedveggie.github.io/Alan-Aguilar/'>Alan</a>
+				<a
+					className={styles.link}
+					href='https://tiltedveggie.github.io/Alan-Aguilar/'>
+					Alan
+				</a>
 			</p>
 		</footer>
 	);
