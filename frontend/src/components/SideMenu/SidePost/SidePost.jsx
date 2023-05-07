@@ -10,7 +10,13 @@ const SidePost = ({ post }) => {
 			className={styles.sidePost}
 			to={`/post/${post.id}`}
 			onClick={() => (document.documentElement.scrollTop = 0)}>
-			<img src={'../uploads/' + post.img} />
+			<img
+				src={
+					post.img.includes('http://') || post.img.includes('https://')
+						? post.img
+						: '../uploads/' + post.img
+				}
+			/>
 
 			<div className={styles.contentWrapper}>
 				<h4>{post.title}</h4>

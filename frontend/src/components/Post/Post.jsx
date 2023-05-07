@@ -9,7 +9,13 @@ const Post = ({ post }) => {
 		<div className={styles.post}>
 			<Link className={styles.wrapper} to={`/post/${post.id}`}>
 				<div className={styles.img}>
-					<img src={'../uploads/' + post.img} />
+					<img
+						src={
+							post.img.includes('http://') || post.img.includes('https://')
+								? post.img
+								: '../uploads/' + post.img
+						}
+					/>
 				</div>
 
 				<div className={styles.content}>

@@ -18,50 +18,59 @@ const Single = () => {
 
 	return (
 		<section className={styles.section}>
-			<article className={styles.content}>
-				<img className={styles.img} src={'../uploads/' + post.img} />
+			{post && (
+				<article className={styles.content}>
+					<img
+						className={styles.img}
+						src={
+							post?.img?.includes('http://') || post?.img?.includes('https://')
+								? post.img
+								: '../uploads/' + post.img
+						}
+					/>
 
-				<div className={styles.userWrapper}>
-					<div className={styles.userInfo}>
-						{post.userImage ? (
-							<img className={styles.userImg} src={post.userImage} />
-						) : (
-							<img
-								className={styles.userImg}
-								src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
-							/>
-						)}
-						<div className={styles.userPostInfo}>
-							<span>{post.username}</span>
-							<p>Posted {moment(post.date).fromNow()}</p>
+					<div className={styles.userWrapper}>
+						<div className={styles.userInfo}>
+							{post.userImage ? (
+								<img className={styles.userImg} src={post.userImage} />
+							) : (
+								<img
+									className={styles.userImg}
+									src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
+								/>
+							)}
+							<div className={styles.userPostInfo}>
+								<span>{post.username}</span>
+								<p>Posted {moment(post.date).fromNow()}</p>
+							</div>
 						</div>
+
+						{currentUser?.username === post.username && (
+							<div className={styles.postOptions}>
+								<Link
+									className={styles.edit}
+									to={'/write?edit=' + post.id}
+									state={post}>
+									<div>
+										<AiFillEdit />
+									</div>
+								</Link>
+								<Link className={styles.delete}>
+									<div onClick={() => handleDelete(postId, navigate, '/')}>
+										<AiFillDelete />
+									</div>
+								</Link>
+							</div>
+						)}
 					</div>
 
-					{currentUser?.username === post.username && (
-						<div className={styles.postOptions}>
-							<Link
-								className={styles.edit}
-								to={'/write?edit=' + post.id}
-								state={post}>
-								<div>
-									<AiFillEdit />
-								</div>
-							</Link>
-							<Link className={styles.delete}>
-								<div onClick={() => handleDelete(postId, navigate, '/')}>
-									<AiFillDelete />
-								</div>
-							</Link>
-						</div>
-					)}
-				</div>
+					<div className={styles.postContent}>
+						<h3>{post.title}</h3>
 
-				<div className={styles.postContent}>
-					<h3>{post.title}</h3>
-
-					<div dangerouslySetInnerHTML={{ __html: post.description }}></div>
-				</div>
-			</article>
+						<div dangerouslySetInnerHTML={{ __html: post.description }}></div>
+					</div>
+				</article>
+			)}
 
 			<SideMenu singlePostData={post} />
 		</section>
