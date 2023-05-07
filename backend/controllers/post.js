@@ -32,6 +32,14 @@ exports.addPost = (req, res) => {
 	jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
 		if (err) return res.status(403).json('Token is not valid!');
 
+		if (!req.body.title)
+			return res.status(409).json('You need to add a title!');
+		if (!req.body.description)
+			return res.status(409).json('You need to add a description!');
+		if (!req.body.img) return res.status(409).json('You need to add an image!');
+		if (!req.body.category)
+			return res.status(409).json('You need to add a category!');
+
 		const sqlQuery =
 			'INSERT INTO posts (`title`, `description`, `img`, `date`, `uid`, `category`) VALUES (?)';
 
