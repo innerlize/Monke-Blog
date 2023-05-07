@@ -31,71 +31,75 @@ export const handleLogin = async (
 	values,
 	setError,
 	navigate,
-	navigateTo,
+	path,
 	login
 ) => {
 	e.preventDefault();
 
 	try {
 		await login(values);
-		navigate(navigateTo);
+		navigate(path);
 	} catch (err) {
 		console.log(err);
 		setError(err);
 	}
 };
 
-export const handleRegister = async (
-	e,
-	values,
-	setError,
-	navigate,
-	navigateTo
-) => {
+export const handleRegister = async (e, values, setError, navigate, path) => {
 	e.preventDefault();
 
 	try {
 		await axios.post('/auth/register', values);
-		navigate(navigateTo);
+		navigate(path);
 	} catch (err) {
 		console.log(err);
 		setError(err);
 	}
 };
 
-export const handleDelete = async (id, navigate, navigateTo) => {
+export const handleDelete = async (id, navigate, path) => {
 	try {
 		await axios.delete('/posts/' + id);
-		navigate(navigateTo);
+		navigate(path);
 	} catch (err) {
 		console.log(err);
 	}
 };
 
-export const handlePublish = async (e, file, state, values) => {
+export const handlePublish = async (
+	e,
+	setError,
+	file,
+	state,
+	values,
+	navigate,
+	path
+) => {
 	e.preventDefault();
 
-	const imgUrl = await handleUploadImage(file);
+	const { title, description, imgURL, category } = values;
 
-	const { title, description, category } = values;
+	const filename = await handleUploadImage(file);
 
 	try {
 		state
 			? await axios.put('/posts/' + state.id, {
 					title,
 					description,
-					img: file ? imgUrl : '',
+					img: file ? filename.data : imgURL,
 					category
 			  })
 			: await axios.post('/posts', {
 					title,
 					description,
-					img: file ? imgUrl : '',
+					img: file ? filename.data : imgURL,
 					date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
 					category
 			  });
+
+		navigate(path);
 	} catch (err) {
-		console.log(err);
+		setError(err);
 	}
 };
 
@@ -105,7 +109,7 @@ export const handleUploadImage = async file => {
 		formData.append('file', file);
 
 		const response = await axios.post('/upload', formData);
-		return response.data;
+		return response;
 	} catch (err) {
 		console.log(err);
 	}

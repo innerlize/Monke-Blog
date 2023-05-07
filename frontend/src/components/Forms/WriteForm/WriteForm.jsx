@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { handlePublish } from '../../../api/api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './WriteForm.module.scss';
 
 const WriteForm = () => {
@@ -10,14 +10,20 @@ const WriteForm = () => {
 
 	const [title, setTitle] = useState(state?.title || '');
 	const [description, setDescription] = useState(state?.description || '');
+	const [imgURL, setImgURL] = useState(null);
 	const [file, setFile] = useState(null);
 	const [category, setCategory] = useState(state?.category || '');
+
+	const [error, setError] = useState();
 
 	const values = {
 		title,
 		description,
+		imgURL,
 		category
 	};
+
+	const navigate = useNavigate();
 
 	return (
 		<form className={styles.form}>
@@ -51,6 +57,8 @@ const WriteForm = () => {
 					<input
 						type='text'
 						placeholder='E.g.: https://images.pexels.com/photos/1404727/pexels-photo-1404727.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+						onChange={e => setImgURL(e.target.value)}
+						disabled={file ? true : false}
 					/>
 					<p>Or</p>
 					<label htmlFor='file'>Upload Image</label>
@@ -58,6 +66,7 @@ const WriteForm = () => {
 						type='file'
 						id='file'
 						onChange={e => setFile(e.target.files[0])}
+						disabled={imgURL ? true : false}
 					/>
 					{file?.name && <p className={styles.selected_file}>{file.name}</p>}
 				</div>
@@ -120,7 +129,12 @@ const WriteForm = () => {
 				</div>
 
 				<div className={styles.publish}>
-					<button onClick={e => handlePublish(e, file, state, values)}>
+					{error && <span className={styles.error}>{error.response.data}</span>}
+
+					<button
+						onClick={e =>
+							handlePublish(e, setError, file, state, values, navigate, '/')
+						}>
 						{state ? 'Update' : 'Publish'}
 					</button>
 				</div>
