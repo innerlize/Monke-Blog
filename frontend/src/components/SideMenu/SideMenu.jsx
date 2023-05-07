@@ -8,12 +8,16 @@ import { Navigation } from 'swiper';
 import styles from './SideMenu.module.scss';
 
 const SideMenu = ({ singlePostData }) => {
-	const { posts } = useFetch('/posts/?category=', singlePostData.category);
+	const { posts, loading } = useFetch(
+		'/posts/?category=',
+		singlePostData.category
+	);
 
 	return (
 		<article className={styles.sideMenu}>
 			<h3>Other posts you may like</h3>
 
+			{loading && 'loading...'}
 			<Swiper navigation={true} modules={[Navigation]} className='mySwiper'>
 				{posts?.map((post, index) => {
 					if (singlePostData.id !== post.id && index <= 4) {
