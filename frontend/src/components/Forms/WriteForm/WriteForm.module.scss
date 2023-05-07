@@ -97,6 +97,18 @@
 		}
 
 		.publish {
+			position: relative;
+
+			.error {
+				position: absolute;
+				bottom: 110%;
+				display: block;
+				width: 100%;
+				text-align: center;
+				font-weight: bold;
+				color: red;
+			}
+
 			button {
 				width: 100%;
 				padding: 15px 0;
