@@ -32,7 +32,7 @@ const upload = multer({ storage });
 app.post('/api/upload', upload.single('file'), (req, res) => {
 	const file = req.file;
 
-	res.status(200).json(file.filename);
+	res.status(200).json(file?.filename);
 });
 
 // --------------------------------------------------
