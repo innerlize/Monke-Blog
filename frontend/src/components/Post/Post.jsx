@@ -6,7 +6,9 @@ import styles from './Post.module.scss';
 
 const Post = ({ post }) => {
 	return (
-		<div className={styles.post}>
+		<div
+			className={styles.post}
+			onClick={() => (document.documentElement.scrollTop = 0)}>
 			<Link className={styles.wrapper} to={`/post/${post.id}`}>
 				<div className={styles.img}>
 					<img
