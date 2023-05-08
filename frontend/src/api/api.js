@@ -79,7 +79,7 @@ export const handlePublish = async (
 
 	const { title, description, imgURL, category } = values;
 
-	const filename = await handleUploadImage(file);
+	const filename = await handleUploadImage(e, file);
 
 	try {
 		state
@@ -103,7 +103,9 @@ export const handlePublish = async (
 	}
 };
 
-export const handleUploadImage = async file => {
+export const handleUploadImage = async (e, file) => {
+	e.preventDefault();
+
 	try {
 		const formData = new FormData();
 		formData.append('file', file);
