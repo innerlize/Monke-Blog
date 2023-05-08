@@ -70,16 +70,28 @@
 	}
 
 	.postContent {
-		h3 {
+		.title {
 			font-family: var(--montserrat);
-			font-size: 26px;
-			margin-bottom: 20px;
+			font-size: 32px;
+			margin-bottom: 30px;
 		}
 
 		div {
+			h1:not(.title) {
+				font-size: 28px;
+			}
+
+			h2 {
+				font-size: 25px;
+			}
+
+			h3 {
+				font-size: 23px;
+			}
+
 			p {
 				font-family: var(--madurai);
-				font-size: 19px;
+				font-size: 20px;
 				word-wrap: break-word;
 			}
 		}
@@ -89,7 +101,7 @@
 @media only screen and (min-width: 1280px) {
 	.section {
 		flex-direction: row;
-		padding: 50px 5vw;
+		padding: 50px 5vw 200px;
 		gap: 5vw;
 
 		.content {
@@ -127,14 +139,28 @@
 			}
 
 			.postContent {
-				h3 {
-					font-size: 26px;
-					margin-bottom: 20px;
+				margin-top: 2vw;
+
+				.title {
+					font-size: 36px;
+					margin-bottom: 3vw;
 				}
 
 				div {
+					h1:not(.title) {
+						font-size: 29px;
+					}
+
+					h2 {
+						font-size: 26px;
+					}
+
+					h3 {
+						font-size: 23.5px;
+					}
+
 					p {
-						font-size: 19px;
+						font-size: 20px;
 					}
 				}
 			}

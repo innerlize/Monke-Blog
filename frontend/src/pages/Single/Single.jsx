@@ -65,7 +65,7 @@ const Single = () => {
 					</div>
 
 					<div className={styles.postContent}>
-						<h3>{post.title}</h3>
+						<h1 className={styles.title}>{post.title}</h1>
 
 						<div dangerouslySetInnerHTML={{ __html: post.description }}></div>
 					</div>
