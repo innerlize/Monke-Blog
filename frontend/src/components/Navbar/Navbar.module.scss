@@ -68,6 +68,10 @@
 }
 
 @media only screen and (min-width: 1280px) {
+	.nav {
+		padding: 10px 7vw;
+	}
+
 	.links_cont_on {
 		justify-content: center !important;
 		gap: 12vw;
