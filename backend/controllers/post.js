@@ -27,16 +27,29 @@ exports.getSinglePost = (req, res) => {
 exports.addPost = (req, res) => {
 	const token = req.cookies.access_token;
 
-	if (!token) return res.status(401).json('Not authenticated');
+	if (!token) return res.status(401).json('Not authenticated. Sign in!');
 
 	jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
 		if (err) return res.status(403).json('Token is not valid!');
 
 		if (!req.body.title)
 			return res.status(409).json('You need to add a title!');
-		if (!req.body.description)
+		else if (req.body.title.length > 255)
+			return res.status(409).json('Title too long!');
+
+		if (
+			!req.body.description ||
+			(req.body.description.length === 11 &&
+				req.body.description.includes('<p><br></p>'))
+		)
 			return res.status(409).json('You need to add a description!');
+		else if (req.body.description.length > 12000)
+			return res.status(409).json('Description too long!');
+
 		if (!req.body.img) return res.status(409).json('You need to add an image!');
+		else if (req.body.img.length > 255)
+			return res.status(409).json('Image name too long!');
+
 		if (!req.body.category)
 			return res.status(409).json('You need to add a category!');
 
@@ -64,6 +77,26 @@ exports.updatePost = (req, res) => {
 	const token = req.cookies.access_token;
 
 	if (!token) return res.status(401).json('Not authenticated');
+
+	if (!req.body.title) return res.status(409).json('You need to add a title!');
+	else if (req.body.title.length > 255)
+		return res.status(409).json('Title too long!');
+
+	if (
+		!req.body.description ||
+		(req.body.description.length === 11 &&
+			req.body.description.includes('<p><br></p>'))
+	)
+		return res.status(409).json('You need to add a description!');
+	else if (req.body.description.length > 12000)
+		return res.status(409).json('Description too long!');
+
+	if (!req.body.img) return res.status(409).json('You need to add an image!');
+	else if (req.body.img.length > 255)
+		return res.status(409).json('Image name too long!');
+
+	if (!req.body.category)
+		return res.status(409).json('You need to add a category!');
 
 	jwt.verify(token, process.env.JWT_KEY, (err, userInfo) => {
 		if (err) return res.status(403).json('Token is not valid!');
