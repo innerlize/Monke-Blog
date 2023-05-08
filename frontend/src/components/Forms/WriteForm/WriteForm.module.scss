@@ -62,6 +62,15 @@
 				display: none;
 			}
 
+			input[type='file']:disabled + label {
+				opacity: 0.5;
+				cursor: default;
+
+				&:hover {
+					background-color: var(--blue);
+				}
+			}
+
 			.selected_file {
 				width: fit-content;
 				padding: 0 5px;

@@ -61,13 +61,13 @@ const WriteForm = () => {
 						disabled={file ? true : false}
 					/>
 					<p>Or</p>
-					<label htmlFor='file'>Upload Image</label>
 					<input
 						type='file'
 						id='file'
 						onChange={e => setFile(e.target.files[0])}
 						disabled={imgURL ? true : false}
 					/>
+					<label htmlFor='file'>Upload Image</label>
 					{file?.name && <p className={styles.selected_file}>{file.name}</p>}
 				</div>
 
