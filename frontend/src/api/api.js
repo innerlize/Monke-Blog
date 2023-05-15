@@ -49,7 +49,10 @@ export const handleRegister = async (e, values, setError, navigate, path) => {
 	e.preventDefault();
 
 	try {
-		await axios.post('/auth/register', values);
+		await axios.post(
+			'https://monke-blog-production.up.railway.app/api/auth/register',
+			values
+		);
 		navigate(path);
 	} catch (err) {
 		console.log(err);
@@ -59,7 +62,9 @@ export const handleRegister = async (e, values, setError, navigate, path) => {
 
 export const handleDelete = async (id, navigate, path) => {
 	try {
-		await axios.delete('/posts/' + id);
+		await axios.delete(
+			'https://monke-blog-production.up.railway.app/api/posts/' + id
+		);
 		navigate(path);
 	} catch (err) {
 		console.log(err);
@@ -83,19 +88,25 @@ export const handlePublish = async (
 
 	try {
 		state
-			? await axios.put('/posts/' + state.id, {
-					title,
-					description,
-					img: file ? filename.data : imgURL,
-					category
-			  })
-			: await axios.post('/posts', {
-					title,
-					description,
-					img: file ? filename.data : imgURL,
-					date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
-					category
-			  });
+			? await axios.put(
+					'https://monke-blog-production.up.railway.app/api/posts/' + state.id,
+					{
+						title,
+						description,
+						img: file ? filename.data : imgURL,
+						category
+					}
+			  )
+			: await axios.post(
+					'https://monke-blog-production.up.railway.app/api/posts',
+					{
+						title,
+						description,
+						img: file ? filename.data : imgURL,
+						date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
+						category
+					}
+			  );
 
 		navigate(path);
 	} catch (err) {
@@ -110,7 +121,10 @@ export const handleUploadImage = async (e, file) => {
 		const formData = new FormData();
 		formData.append('file', file);
 
-		const response = await axios.post('/upload', formData);
+		const response = await axios.post(
+			'https://monke-blog-production.up.railway.app/api/upload',
+			formData
+		);
 		return response;
 	} catch (err) {
 		console.log(err);

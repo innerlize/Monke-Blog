@@ -9,10 +9,15 @@ function useFetch(url, category) {
 	useEffect(() => {
 		setLoading(true);
 
+		console.log({ url, category });
+
+		console.log(url + category);
+
 		axios
 			.get(url + category)
 
 			.then(({ data }) => {
+				console.log(data);
 				setPosts(data);
 			})
 

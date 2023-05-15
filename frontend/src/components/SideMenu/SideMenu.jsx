@@ -9,7 +9,7 @@ import styles from './SideMenu.module.scss';
 
 const SideMenu = ({ singlePostData }) => {
 	const { posts, loading } = useFetch(
-		'/posts/?category=',
+		'https://monke-blog-production.up.railway.app/api/posts/?category=',
 		singlePostData.category
 	);
 

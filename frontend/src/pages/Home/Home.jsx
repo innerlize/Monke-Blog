@@ -7,7 +7,13 @@ import styles from './Home.module.scss';
 const Home = () => {
 	const category = useLocation().search;
 
-	const { posts, loading, error } = useFetch('/posts', category);
+	const { posts, loading, error } = useFetch(
+		'https://monke-blog-production.up.railway.app/api/posts',
+		category
+	);
+
+	console.log(posts);
+	console.log(typeof posts);
 
 	return (
 		<section className={styles.section}>

@@ -12,7 +12,10 @@ const Single = () => {
 	const { id: postId } = useParams();
 	const navigate = useNavigate();
 
-	const { post } = useSingleFetch('/posts/', postId);
+	const { post } = useSingleFetch(
+		'https://monke-blog-production.up.railway.app/api/posts/',
+		postId
+	);
 
 	const { currentUser } = useContext(AuthContext);
 
