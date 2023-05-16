@@ -20,7 +20,6 @@ const AuthContextProvider = ({ children }) => {
 	const logout = async () => {
 		await axios.post(
 			'https://monke-blog-production.up.railway.app/api/auth/logout',
-			{},
 			{ withCredentials: true }
 		);
 		setCurrentUser(null);

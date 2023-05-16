@@ -75,7 +75,7 @@ exports.logout = (req, res) => {
 	res
 		.clearCookie('access_token', {
 			httpOnly: true,
-			sameSite: 'none',
+			sameSite: 'lax',
 			secure: true
 		})
 		.status(200)

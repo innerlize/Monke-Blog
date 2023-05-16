@@ -15,7 +15,9 @@ app.use(
 	cors({
 		origin: [
 			'https://monke-blog.vercel.app',
-			'https://monke-blog.vercel.app/login'
+			'https://monke-blog.vercel.app/login',
+			'https://monke-blog.vercel.app/logout',
+			'https://monke-blog.vercel.app/write'
 		],
 		credentials: true
 	})
