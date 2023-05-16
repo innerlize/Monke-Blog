@@ -63,8 +63,8 @@ exports.login = (req, res) => {
 		res
 			.cookie('access_token', token, {
 				httpOnly: true,
-				secure: true,
-				domain: 'monke-blog.vercel.app'
+				sameSite: 'none',
+				secure: true
 			})
 			.status(200)
 			.json(other);
@@ -74,9 +74,9 @@ exports.login = (req, res) => {
 exports.logout = (req, res) => {
 	res
 		.clearCookie('access_token', {
+			httpOnly: true,
 			sameSite: 'none',
-			secure: true,
-			domain: 'monke-blog.vercel.app'
+			secure: true
 		})
 		.status(200)
 		.json('User has been logged out.');
