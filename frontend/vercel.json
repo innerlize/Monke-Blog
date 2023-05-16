@@ -16,7 +16,7 @@
 			]
 		},
 		{
-			"source": "https://monke-blog.vercel.app/(.*)",
+			"source": "/monke-blog.vercel.app/(.*)",
 			"headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
 		}
 	]
