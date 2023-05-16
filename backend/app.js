@@ -11,7 +11,7 @@ const app = express();
 
 // --------------------------------------------------
 
-app.use(cors({ origin: 'https://monke-blog.vercel.app/', credentials: true }));
+app.use(cors({ origin: 'https://monke-blog.vercel.app', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
