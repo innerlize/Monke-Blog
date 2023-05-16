@@ -11,17 +11,14 @@ const AuthContextProvider = ({ children }) => {
 	const login = async values => {
 		const result = await axios.post(
 			'https://monke-blog-production.up.railway.app/api/auth/login',
-			values,
-			{ withCredentials: true }
+			values
 		);
 		setCurrentUser(result.data);
 	};
 
 	const logout = async () => {
 		await axios.post(
-			'https://monke-blog-production.up.railway.app/api/auth/logout',
-			{},
-			{ withCredentials: true }
+			'https://monke-blog-production.up.railway.app/api/auth/logout'
 		);
 		setCurrentUser(null);
 	};
