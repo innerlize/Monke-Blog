@@ -63,7 +63,7 @@ exports.login = (req, res) => {
 		res
 			.cookie('access_token', token, {
 				httpOnly: true,
-				sameSite: 'none',
+				sameSite: 'lax',
 				secure: true
 			})
 			.status(200)
