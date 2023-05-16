@@ -16,10 +16,7 @@ app.use(
 		origin: [
 			'https://monke-blog.vercel.app',
 			'https://monke-blog.vercel.app/login',
-			'https://monke-blog.vercel.app/logout',
-			'https://monke-blog-production-09b7.up.railway.app',
-			'https://monke-blog-production-09b7.up.railway.app/login',
-			'https://monke-blog-production-09b7.up.railway.app/logout'
+			'https://monke-blog.vercel.app/logout'
 		],
 		credentials: true
 	})
