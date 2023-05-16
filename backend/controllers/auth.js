@@ -61,7 +61,11 @@ exports.login = (req, res) => {
 		const token = jwt.sign({ id: other.id }, process.env.JWT_KEY);
 
 		res
-			.cookie('access_token', token, { httpOnly: true })
+			.cookie('access_token', token, {
+				httpOnly: true,
+				secure: true,
+				domain: 'monke-blog.vercel.app'
+			})
 			.status(200)
 			.json(other);
 	});
@@ -71,7 +75,8 @@ exports.logout = (req, res) => {
 	res
 		.clearCookie('access_token', {
 			sameSite: 'none',
-			secure: true
+			secure: true,
+			domain: 'monke-blog.vercel.app'
 		})
 		.status(200)
 		.json('User has been logged out.');
