@@ -12,9 +12,6 @@ const Home = () => {
 		category
 	);
 
-	console.log(posts);
-	console.log(typeof posts);
-
 	return (
 		<section className={styles.section}>
 			{loading && <p>Loading...</p>}
