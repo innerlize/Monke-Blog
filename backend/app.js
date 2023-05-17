@@ -11,24 +11,24 @@ const app = express();
 
 // --------------------------------------------------
 
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(express.static('public'));
+
 app.use(
 	cors({
-		origin: [
-			'https://monke-blog.vercel.app',
-			'https://monke-blog.vercel.app/login',
-			'https://monke-blog.vercel.app/logout'
-		],
+		origin: 'http://localhost:3000',
+		methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
 		credentials: true
 	})
 );
-app.use(express.json());
-app.use(cookieParser());
 
 // --------------------------------------------------
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, '../frontend/public/uploads/');
+		cb(null, './public/uploads/');
 	},
 
 	filename: (req, file, cb) => {
