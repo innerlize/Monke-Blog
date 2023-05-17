@@ -63,7 +63,7 @@ exports.login = (req, res) => {
 		res
 			.cookie('access_token', token, {
 				httpOnly: true,
-				SameSite: 'none',
+				sameSite: 'none',
 				secure: true
 			})
 			.status(200)
@@ -75,7 +75,7 @@ exports.logout = (req, res) => {
 	res
 		.clearCookie('access_token', {
 			httpOnly: true,
-			SameSite: 'none',
+			sameSite: 'none',
 			secure: true
 		})
 		.status(200)
