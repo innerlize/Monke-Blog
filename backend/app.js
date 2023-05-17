@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 app.use(
 	cors({
-		origin: 'http://localhost:3000',
+		origin: process.env.FRONTEND_DOMAIN,
 		methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
 		credentials: true
 	})
