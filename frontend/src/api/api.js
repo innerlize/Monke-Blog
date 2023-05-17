@@ -49,10 +49,7 @@ export const handleRegister = async (e, values, setError, navigate, path) => {
 	e.preventDefault();
 
 	try {
-		await axios.post(
-			'https://monke-blog-production.up.railway.app/api/auth/register',
-			values
-		);
+		await axios.post(process.env.REACT_APP_API_URL + 'auth/register', values);
 		navigate(path);
 	} catch (err) {
 		console.log(err);
@@ -62,9 +59,9 @@ export const handleRegister = async (e, values, setError, navigate, path) => {
 
 export const handleDelete = async (id, navigate, path) => {
 	try {
-		await axios.delete(
-			'https://monke-blog-production.up.railway.app/api/posts/' + id
-		);
+		await axios.delete(process.env.REACT_APP_API_URL + 'posts/' + id, {
+			withCredentials: true
+		});
 		navigate(path);
 	} catch (err) {
 		console.log(err);
@@ -89,23 +86,25 @@ export const handlePublish = async (
 	try {
 		state
 			? await axios.put(
-					'https://monke-blog-production.up.railway.app/api/posts/' + state.id,
+					process.env.REACT_APP_API_URL + 'posts/' + state.id,
 					{
 						title,
 						description,
 						img: file ? filename.data : imgURL,
 						category
-					}
+					},
+					{ withCredentials: true }
 			  )
 			: await axios.post(
-					'https://monke-blog-production.up.railway.app/api/posts',
+					process.env.REACT_APP_API_URL + 'posts',
 					{
 						title,
 						description,
 						img: file ? filename.data : imgURL,
 						date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
 						category
-					}
+					},
+					{ withCredentials: true }
 			  );
 
 		navigate(path);
@@ -122,7 +121,7 @@ export const handleUploadImage = async (e, file) => {
 		formData.append('file', file);
 
 		const response = await axios.post(
-			'https://monke-blog-production.up.railway.app/api/upload',
+			process.env.REACT_APP_API_URL + 'upload',
 			formData
 		);
 		return response;
