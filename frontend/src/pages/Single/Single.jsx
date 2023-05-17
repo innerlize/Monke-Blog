@@ -13,7 +13,7 @@ const Single = () => {
 	const navigate = useNavigate();
 
 	const { post } = useSingleFetch(
-		'https://monke-blog-production.up.railway.app/api/posts/',
+		process.env.REACT_APP_API_URL + 'posts/',
 		postId
 	);
 
@@ -28,7 +28,7 @@ const Single = () => {
 						src={
 							post?.img?.includes('http://') || post?.img?.includes('https://')
 								? post.img
-								: '../uploads/' + post.img
+								: process.env.REACT_APP_PUBLIC_MEDIA_URL + post.img
 						}
 					/>
 

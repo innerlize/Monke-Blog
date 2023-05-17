@@ -15,7 +15,7 @@ const Post = ({ post }) => {
 						src={
 							post.img.includes('http://') || post.img.includes('https://')
 								? post.img
-								: '../uploads/' + post.img
+								: process.env.REACT_APP_PUBLIC_MEDIA_URL + post.img
 						}
 					/>
 				</div>

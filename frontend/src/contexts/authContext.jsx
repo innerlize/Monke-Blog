@@ -10,7 +10,7 @@ const AuthContextProvider = ({ children }) => {
 
 	const login = async values => {
 		const result = await axios.post(
-			'https://monke-blog-production.up.railway.app/api/auth/login',
+			process.env.REACT_APP_API_URL + 'auth/login',
 			values,
 			{ withCredentials: true }
 		);
@@ -19,7 +19,7 @@ const AuthContextProvider = ({ children }) => {
 
 	const logout = async () => {
 		await axios.post(
-			'https://monke-blog-production.up.railway.app/api/auth/logout',
+			process.env.REACT_APP_API_URL + 'auth/logout',
 			{},
 			{ withCredentials: true }
 		);

@@ -8,7 +8,7 @@ const Home = () => {
 	const category = useLocation().search;
 
 	const { posts, loading, error } = useFetch(
-		'https://monke-blog-production.up.railway.app/api/posts',
+		process.env.REACT_APP_API_URL + 'posts',
 		category
 	);
 
